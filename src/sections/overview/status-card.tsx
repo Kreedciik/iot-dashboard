@@ -2,6 +2,8 @@
 
 import type { ReactNode } from 'react';
 
+import { When } from 'react-if';
+
 import { Box, Chip, Paper, Typography } from '@mui/material';
 
 interface StatusCardProps {
@@ -10,9 +12,10 @@ interface StatusCardProps {
   icon: ReactNode;
   onLabel: string;
   offLabel: string;
+  hasData: boolean;
 }
 
-export function StatusCard({ title, status, icon, onLabel, offLabel }: StatusCardProps) {
+export function StatusCard({ title, status, icon, onLabel, offLabel, hasData }: StatusCardProps) {
   return (
     <Paper
       sx={{
@@ -40,11 +43,13 @@ export function StatusCard({ title, status, icon, onLabel, offLabel }: StatusCar
             {title}
           </Typography>
         </Box>
-        <Chip
-          label={status ? onLabel : offLabel}
-          color={status ? 'success' : 'error'}
-          sx={{ fontWeight: 'bold' }}
-        />
+        <When condition={hasData}>
+          <Chip
+            label={status ? onLabel : offLabel}
+            color={status ? 'success' : 'error'}
+            sx={{ fontWeight: 'bold' }}
+          />
+        </When>
       </Box>
       <Box
         sx={{

@@ -2803,6 +2803,11 @@ react-helmet-async@^2.0.5:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
+react-if@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/react-if/-/react-if-4.1.5.tgz#f23f49277779e07240c61bdc7ab12671ff3fc20f"
+  integrity sha512-Uk+Ub2gC83PAakuU4+7iLdTEP4LPi2ihNEPCtz/vr8SLGbzkMApbpYbkDZ5z9zYXurd0gg+EK/bpOLFFC1r1eQ==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"

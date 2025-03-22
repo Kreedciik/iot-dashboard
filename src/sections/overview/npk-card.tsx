@@ -1,13 +1,16 @@
+import { When } from 'react-if';
+
 import { Grass } from '@mui/icons-material';
 import { Box, Grid, Paper, Typography, LinearProgress } from '@mui/material';
 
 interface NpkCardProps {
-  nitrogen: number; // 0-255
-  phosphorus: number; // 0-255
-  potassium: number; // 0-255
+  nitrogen: number | undefined; // 0-255
+  phosphorus: number | undefined; // 0-255
+  potassium: number | undefined; // 0-255
+  hasData: boolean;
 }
 
-export function NpkCard({ nitrogen, phosphorus, potassium }: NpkCardProps) {
+export function NpkCard({ nitrogen = 0, phosphorus = 0, potassium = 0, hasData }: NpkCardProps) {
   // Convert 0-255 scale to 0-100 percentage for display
   const nitrogenPercent = (nitrogen / 255) * 100;
   const phosphorusPercent = (phosphorus / 255) * 100;
@@ -71,9 +74,11 @@ export function NpkCard({ nitrogen, phosphorus, potassium }: NpkCardProps) {
               }}
             />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-              <Typography variant="body2" color="text.secondary">
-                Level: {getLevelText(nitrogen)}
-              </Typography>
+              <When condition={hasData}>
+                <Typography variant="body2" color="text.secondary">
+                  Level: {getLevelText(nitrogen)}
+                </Typography>
+              </When>
               <Typography variant="body2" color="text.secondary">
                 {nitrogenPercent.toFixed(1)}%
               </Typography>
@@ -103,9 +108,11 @@ export function NpkCard({ nitrogen, phosphorus, potassium }: NpkCardProps) {
               }}
             />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-              <Typography variant="body2" color="text.secondary">
-                Level: {getLevelText(phosphorus)}
-              </Typography>
+              <When condition={hasData}>
+                <Typography variant="body2" color="text.secondary">
+                  Level: {getLevelText(phosphorus)}
+                </Typography>
+              </When>
               <Typography variant="body2" color="text.secondary">
                 {phosphorusPercent.toFixed(1)}%
               </Typography>
@@ -135,9 +142,11 @@ export function NpkCard({ nitrogen, phosphorus, potassium }: NpkCardProps) {
               }}
             />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-              <Typography variant="body2" color="text.secondary">
-                Level: {getLevelText(potassium)}
-              </Typography>
+              <When condition={hasData}>
+                <Typography variant="body2" color="text.secondary">
+                  Level: {getLevelText(potassium)}
+                </Typography>
+              </When>
               <Typography variant="body2" color="text.secondary">
                 {potassiumPercent.toFixed(1)}%
               </Typography>
