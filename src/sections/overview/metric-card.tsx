@@ -2,16 +2,18 @@
 
 import type { ReactNode } from 'react';
 
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Skeleton, Typography } from '@mui/material';
 
 interface MetricCardProps {
   title: string;
   value: string;
   icon: ReactNode;
   color: string;
+  loading?: boolean;
 }
 
-export function MetricCard({ title, value, icon, color }: MetricCardProps) {
+export function MetricCard({ title, value, icon, color, loading = false }: MetricCardProps) {
+  if (loading) return <Skeleton animation="pulse" variant="rounded" width="362px" height="124px" />;
   return (
     <Paper
       sx={{

@@ -6,13 +6,16 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 
 import { varAlpha } from 'src/theme/styles';
 import { AuthLayout } from 'src/layouts/auth';
+import UserProvider from 'src/hoc/user-provider';
 import { DashboardLayout } from 'src/layouts/dashboard';
+
+import { ProtectedRoute } from './components/protected-route';
 
 // ----------------------------------------------------------------------
 
 export const HomePage = lazy(() => import('src/pages/home'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
-export const UserPage = lazy(() => import('src/pages/user'));
+export const HistoryPage = lazy(() => import('src/pages/history'));
 export const SignInPage = lazy(() => import('src/pages/sign-in'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -36,15 +39,19 @@ export function Router() {
   return useRoutes([
     {
       element: (
-        <DashboardLayout>
-          <Suspense fallback={renderFallback}>
-            <Outlet />
-          </Suspense>
-        </DashboardLayout>
+        <ProtectedRoute>
+          <UserProvider>
+            <DashboardLayout>
+              <Suspense fallback={renderFallback}>
+                <Outlet />
+              </Suspense>
+            </DashboardLayout>
+          </UserProvider>
+        </ProtectedRoute>
       ),
       children: [
         { element: <HomePage />, index: true },
-        { path: 'analytics', element: <UserPage /> },
+        { path: 'history', element: <HistoryPage /> },
         { path: 'actuator-control', element: <ProductsPage /> },
       ],
     },

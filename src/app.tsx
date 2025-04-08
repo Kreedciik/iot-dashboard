@@ -1,5 +1,8 @@
 import 'src/global.css';
 
+import { ToastContainer } from 'react-toastify';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import Fab from '@mui/material/Fab';
 
 import { Router } from 'src/routes/sections';
@@ -19,7 +22,8 @@ export default function App() {
     <Fab
       size="medium"
       aria-label="Github"
-      href="https://github.com/minimal-ui-kit/material-kit-react"
+      target="_blank"
+      href="https://github.com/Kreedciik/iot-dashboard"
       sx={{
         zIndex: 9,
         right: 20,
@@ -34,11 +38,16 @@ export default function App() {
       <Iconify width={24} icon="eva:github-fill" />
     </Fab>
   );
-
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  });
   return (
-    <ThemeProvider>
-      <Router />
-      {githubButton}
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <Router />
+        <ToastContainer />
+        {githubButton}
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

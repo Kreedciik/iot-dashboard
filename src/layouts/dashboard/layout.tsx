@@ -3,8 +3,6 @@ import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
-import { _notifications } from 'src/_mock';
-
 import { Main } from './main';
 import { NavDesktop } from './nav';
 import { layoutClasses } from '../classes';
@@ -13,7 +11,6 @@ import { _workspaces } from '../config-nav-workspace';
 import { HeaderSection } from '../core/header-section';
 import { LayoutSection } from '../core/layout-section';
 import { AccountPopover } from '../components/account-popover';
-import { NotificationsPopover } from '../components/notifications-popover';
 
 // ----------------------------------------------------------------------
 
@@ -47,7 +44,7 @@ export function DashboardLayout({ sx, children, header }: DashboardLayoutProps) 
           slots={{
             rightArea: (
               <Box gap={1} display="flex" alignItems="center">
-                <NotificationsPopover data={_notifications} />
+                {/* <NotificationsPopover data={_notifications} /> */}
                 <AccountPopover />
               </Box>
             ),

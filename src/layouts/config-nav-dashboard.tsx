@@ -12,11 +12,11 @@ export const navData = [
     path: '/',
     icon: icon('ic-live'),
   },
-  // {
-  //   title: 'Analytics',
-  //   path: '/analytics',
-  //   icon: icon('ic-analytics'),
-  // },
+  {
+    title: 'History',
+    path: '/history',
+    icon: icon('ic-analytics'),
+  },
   // {
   //   title: 'Actuator control',
   //   path: '/actuator-control',

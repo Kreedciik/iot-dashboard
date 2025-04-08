@@ -11,6 +11,7 @@ import { DashboardContent } from 'src/layouts/dashboard';
 import { NpkCard } from '../npk-card';
 import { MetricCard } from '../metric-card';
 import { StatusCard } from '../status-card';
+// @ts-ignore
 import { useSensorDataWS } from './useSensorDataWs';
 import { MetricBarchart } from '../metric-bar-chart';
 
@@ -38,8 +39,6 @@ export function OverviewLiveMonitoringView() {
     state: { data },
     actions,
   } = useSensorDataWS();
-  console.log(fTime(mock.date));
-
   return (
     <DashboardContent maxWidth="xl">
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

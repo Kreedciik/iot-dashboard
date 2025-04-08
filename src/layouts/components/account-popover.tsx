@@ -7,14 +7,14 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
 import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 
 import { useRouter, usePathname } from 'src/routes/hooks';
 
 import { _myAccount } from 'src/_mock';
+import { useUser } from 'src/hoc/user-provider';
+import { useAuth } from 'src/hoc/auth-provider';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +29,8 @@ export type AccountPopoverProps = IconButtonProps & {
 
 export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps) {
   const router = useRouter();
-
+  const { currentUser, clearUser } = useUser();
+  const { handleLogout } = useAuth();
   const pathname = usePathname();
 
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
@@ -82,16 +83,16 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
         }}
       >
         <Box sx={{ p: 2, pb: 1.5 }}>
-          <Typography variant="subtitle2" noWrap>
+          {/* <Typography variant="subtitle2" noWrap>
             {_myAccount?.displayName}
-          </Typography>
+          </Typography> */}
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {_myAccount?.email}
+            {currentUser?.email}
           </Typography>
         </Box>
 
-        <MenuList
+        {/* <MenuList
           disablePadding
           sx={{
             p: 1,
@@ -122,12 +123,21 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
               {option.label}
             </MenuItem>
           ))}
-        </MenuList>
+        </MenuList> */}
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth color="error" size="medium" variant="text">
+          <Button
+            onClick={() => {
+              handleLogout();
+              clearUser();
+            }}
+            fullWidth
+            color="error"
+            size="medium"
+            variant="text"
+          >
             Logout
           </Button>
         </Box>
