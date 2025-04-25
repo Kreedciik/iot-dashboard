@@ -45,7 +45,7 @@ export const useSensorDataWS = () => {
   const getCategories: () => string[] = () => statistics.map((s) => fTime(s.date) || '');
 
   useEffect(() => {
-    const ws = new WebSocket('ws://127.0.0.1:8080/live');
+    const ws = new WebSocket('ws://127.0.0.1:8080/api/live');
 
     ws.onopen = () => {
       console.log('WebSocket connected');
