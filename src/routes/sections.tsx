@@ -14,10 +14,8 @@ import { ProtectedRoute } from './components/protected-route';
 // ----------------------------------------------------------------------
 
 export const HomePage = lazy(() => import('src/pages/home'));
-export const BlogPage = lazy(() => import('src/pages/blog'));
 export const HistoryPage = lazy(() => import('src/pages/history'));
 export const SignInPage = lazy(() => import('src/pages/sign-in'));
-export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 
 // ----------------------------------------------------------------------
@@ -52,7 +50,6 @@ export function Router() {
       children: [
         { element: <HomePage />, index: true },
         { path: 'history', element: <HistoryPage /> },
-        { path: 'actuator-control', element: <ProductsPage /> },
       ],
     },
     {
@@ -63,13 +60,7 @@ export function Router() {
         </AuthLayout>
       ),
     },
-    {
-      path: '404',
-      element: <Page404 />,
-    },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />,
-    },
+    { path: '404', element: <Page404 /> },
+    { path: '*', element: <Navigate to="/404" replace /> },
   ]);
 }

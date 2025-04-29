@@ -1,6 +1,5 @@
 {
   "name": "iot-dashboard",
-  "licence": "MIT",
   "private": false,
   "type": "module",
   "version": "0.0.1",
